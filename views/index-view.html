@@ -1,0 +1,79 @@
+
+<div class="container">
+	<div class="row">
+		<div class="col-md-6">
+			SearchbyName <input type="text" placeholder="eg Liverpool" ng-model="namesearch">
+		</div>
+		<div class="col-md-6">
+			SearchbyRound <input type="text" placeholder="eg 7 or Matchday 7" ng-model="roundsearch.name">
+		</div>
+	</div><br>
+		<div class="row">
+		<div class="col-md-4">
+			Team1 Goals <input type="text" placeholder="eg 2" ng-model="goals.score1">
+		</div>
+		<div class="col-md-4">
+			Team2 Goals <input type="text" placeholder="eg 2" ng-model="goals.score2">
+		</div>
+		<div class="col-md-4">
+			Year
+			<select ng-model="year.date">
+				<option value="">select Year</option>
+				<option value="2015">2015</option>
+				<option value="2016">2016</option>
+				<option value="2017">2017</option>
+  
+</select>
+		</div>
+	</div><hr>
+		<div class="row">
+		<div class="col-md-12 center-block text-center">
+			<h2>English Premier League 2015/16</h2>
+		</div>
+	</div>
+	<hr>
+	<div class="row">
+<div class="col-md-6" ng-repeat="round in displaymatch.allrounds| filter:roundsearch">
+	 <h3 ng-show="(round.matches |filter:year| filter:namesearch|filter:goals).length > 0">Round: {{round.name}}</h3>
+	
+	<div ng-repeat="teamname in round.matches | filter:namesearch | filter:year |filter:goals">
+		
+
+			<b>Match Date:</b> {{teamname.date}} <br>
+		
+		<a ng-href="#!/15/{{teamname.date}}/{{teamname.team1.code}}/{{teamname.team2.code}}">{{teamname.team1.name}} Goals({{teamname.score1}}) <strong>V/S</strong>
+		{{teamname.team2.name}} Goals({{teamname.score2}})</a><br>
+		<!-- Team1 Goals {{teamname.score1}} Team2 Goals {{teamname.score2}} -->
+	</div>
+<!-- adding ng-repeat for score filter -->
+<!-- <div ng-repeat="teamname in round.matches | filter:score">
+	<b>Total Goals: </b>{{teamname.score1+teamname.score2}}
+</div> -->
+<!--end of ng-repeat-->
+</div>
+</div>
+<hr>
+
+<div class="row">
+		<div class="col-md-12 center-block text-center">
+			<h2>English Premier League 2016/17</h2>
+		</div>
+	</div>
+	<hr>
+	<div class="row">
+<div class="col-md-6" ng-repeat="round in displaymatch.allrounds16| filter:roundsearch">
+	 <h3 ng-show="(round.matches |filter:year| filter:namesearch|filter:goals).length > 0">Round: {{round.name}}</h3>
+	
+	<div ng-repeat="teamname in round.matches | filter:namesearch | filter:year |filter:goals">
+			<b>Match Date:</b> {{teamname.date}} <br>
+		<a ng-href="#!/16/{{teamname.date}}/{{teamname.team1.code}}/{{teamname.team2.code}}">{{teamname.team1.name}} Goals({{teamname.score1}}) <strong>V/S</strong>
+		{{teamname.team2.name}} Goals({{teamname.score2}})</a>
+	</div>
+
+</div>
+</div>
+
+</div>
+
+
+
